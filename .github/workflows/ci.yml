@@ -115,7 +115,7 @@ jobs:
       
       - name: Create Kubernetes cluster
         run: |
-          kind create cluster --image=kindest/node:v1.24.6 --config e2e-cluster/kind-config.yml && \
+          kind create cluster --config e2e-cluster/kind-config.yml && \
           kind get kubeconfig > $HOME/.kube/config
 
       - name: Load Images
