@@ -24,10 +24,11 @@ package v1beta1
 import (
 	unsafe "unsafe"
 
-	config "github.com/kubewharf/godel-scheduler/pkg/binder/apis/config"
-	tracing "github.com/kubewharf/godel-scheduler/pkg/util/tracing"
 	conversion "k8s.io/apimachinery/pkg/conversion"
 	runtime "k8s.io/apimachinery/pkg/runtime"
+
+	config "github.com/kubewharf/godel-scheduler/pkg/binder/apis/config"
+	tracing "github.com/kubewharf/godel-scheduler/pkg/util/tracing"
 )
 
 func init() {

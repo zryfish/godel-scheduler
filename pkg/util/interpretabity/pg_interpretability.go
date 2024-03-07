@@ -3,8 +3,9 @@ package interpretabity
 import (
 	"fmt"
 
-	"github.com/kubewharf/godel-scheduler/pkg/framework/api"
 	"k8s.io/apimachinery/pkg/util/sets"
+
+	"github.com/kubewharf/godel-scheduler/pkg/framework/api"
 )
 
 // SchedulingFailureCategory describe the reason for unschedulable Pod.

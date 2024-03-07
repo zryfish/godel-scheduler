@@ -21,13 +21,14 @@ find_files() {
         -name '*.go'
 }
 
-for go_file in $(find_files ${path}); do
-    # sort imports
-    diff="$(goimports -format-only -d -local ${local_pkg} ${go_file})"
-    if [[ -n "${diff}" ]]; then
-        echo "${diff}" >&2
-        echo >&2
-        echo "Failed to verify format. Please run ./hack/update-format.sh" >&2
-        exit 1
-    fi
-done
+# gofmt exits with non-zero exit code if it finds a problem unrelated to
+# formatting (e.g., a file does not parse correctly). Without "|| true" this
+# would have led to no useful error message from gofmt, because the script would
+# have failed before getting to the "echo" in the block below.
+diff=$(find_files | xargs gofmt -d -s 2>&1) || true
+if [[ -n "${diff}" ]]; then
+  echo "${diff}" >&2
+  echo >&2
+  echo "Run ./hack/update-format.sh" >&2
+  exit 1
+fi
